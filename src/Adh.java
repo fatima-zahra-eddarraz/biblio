@@ -16,7 +16,14 @@ public class Adh {
     int nbrAdhEmprunt=0;
     int nb2=0;
     int nbrExemplaireEmprunt=0;
-
+    PreparedStatement pst;
+    Connection cnx;
+    static Statement st;
+    static ResultSet rst;
+    PreparedStatement pst1;
+    Connection cnx1;
+    static Statement st1;
+    static ResultSet rst1;
     Scanner scan = new Scanner(System.in);
 
     Scanner scanner = new Scanner(System.in);
