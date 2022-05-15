@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Enseignant extends Adh {
     private String departement;
@@ -41,8 +42,17 @@ public class Enseignant extends Adh {
         boolean res = false;
         int r = 0;
         try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Veuillez saisir le nom de l'etudiant :");
+            String nom = scanner.nextLine();
+
+            System.out.println("Veuillez saisir le prenome l'etudiant:");
+            String  prenom = scanner.nextLine();
+
+
+            Scanner scanner = new Scanner(System.in);
             Connection cnx = connexion.connectdb();
-            String SQL = "INSERT INTO etudiant(nom,prenom,email) VALUES(?, ?,?,?,?,?,?,?,?)";
+            String SQL = "INSERT INTO adh(nom,prenom,email) VALUES(?, ?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = (PreparedStatement) cnx.prepareStatement(SQL);
             pstmt.setString(1,etudiant.nom);
             pstmt.setString(2, String.valueOf(etudiant.prenom));
