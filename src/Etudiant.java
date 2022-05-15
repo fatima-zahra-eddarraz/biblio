@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Date;
 
 public class Etudiant extends Adh{
@@ -10,31 +11,30 @@ public class Etudiant extends Adh{
     private Date dateFin;
     private int penalite;
 
-    @Override
-    public void emprunter(Exemplaire exemplaire) {
+
+
+    public void emprunter() {
 
     }
 
-    @Override
-    public void rendre(Exemplaire exemplaire) {
+
+    public void rendre() {
 
     }
 
-    @Override
-    public void resever(Exemplaire exemplaire) {
+
+    public void resever() {
 
     }
 
-    @Override
     public void CalculPenalite() {
 
     }
 
-    @Override
-    public void suppEtudiant(Etudiant etudiant) {
+    public void suppEtudiant() {
 
     }
-    public void ajoutEtudiant(Etudiant etudiant){
+    public void ajoutEtudiant(){
 
 
 
@@ -78,12 +78,7 @@ public class Etudiant extends Adh{
         this.penalite = penalite;
     }
 
-    public Etudiant(long numeroAdh, String nom, String prenom, String email, long dureeMax, long emprunt, long nombreEmprunte, String adresse, Date dateFin, int penalite) {
-        super(numeroAdh, nom, prenom, email, dureeMax, emprunt, nombreEmprunte);
-        this.adresse = adresse;
-        this.dateFin = dateFin;
-        this.penalite = penalite;
-    }
+
 
     @Override
     public String toString() {

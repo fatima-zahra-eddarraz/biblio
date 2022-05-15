@@ -1,15 +1,8 @@
 public class Exemplaire {
 
-    private long idExemplaire;
     private boolean disponible;
 
-    public long getIdExemplaire() {
-        return idExemplaire;
-    }
 
-    public void setIdExemplaire(long idExemplaire) {
-        this.idExemplaire = idExemplaire;
-    }
 
     public boolean isDisponible() {
         return disponible;
@@ -19,16 +12,9 @@ public class Exemplaire {
         this.disponible = disponible;
     }
 
-    public Exemplaire(long idExemplaire, boolean disponible) {
-        this.idExemplaire = idExemplaire;
+    public Exemplaire( boolean disponible) {
         this.disponible = disponible;
     }
 
-    @Override
-    public String toString() {
-        return "Exemplaire{" +
-                "idExemplaire=" + idExemplaire +
-                ", disponible=" + disponible +
-                '}';
-    }
+
 }

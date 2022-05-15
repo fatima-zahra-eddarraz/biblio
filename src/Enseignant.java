@@ -1,6 +1,5 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -12,73 +11,79 @@ public class Enseignant extends Adh {
     private long idEnseignant;
 
 
-    @Override
-    public void emprunter(Exemplaire exemplaire) {
+
+    public void rendre() {
 
     }
 
-    @Override
-    public void rendre(Exemplaire exemplaire) {
+    public void resever() {
 
     }
 
-    @Override
-    public void resever(Exemplaire exemplaire) {
-
-    }
-
-    @Override
     public void CalculPenalite() {
 
     }
 
-    @Override
-    public void suppEtudiant(Etudiant etudiant) {
+
+    public void suppEtudiant() throws SQLException {
+        System.out.println("Veuillez saisir votre NumeroAdh :");
+        String nume = scan.nextLine();
+
+        System.out.println("Veuillez saisir votre nom:");
+        String  nomadhEtu = scan.nextLine();
+        Connection cn =connexion.connectdb();
+        st=cn.createStatement();
+        String rq = "SELECT * FROM adh WHERE NumeroAdh= '"+nume+"' AND nom='"+nomadhEtu+"'";
+        try {
+            pst = cn.prepareStatement(rq);
+            rst = pst.executeQuery(rq);
+            if (rst.next()) {
+                String sql = "DELETE FROM adh WHERE NumeroAdh= '"+nume+"' AND nom='"+nomadhEtu+"'";
+                pst = cn.prepareStatement(sql);
+                pst.execute();
+
+            }else {
+                System.out.println("etudiant n'est pas inscrit");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
-    @Override
-    public void ajoutEtudiant(Etudiant etudiant) {
-        boolean res = false;
-        int r = 0;
+    public void ajoutEtudiant() throws SQLException {
+        System.out.println("Veuillez saisir votre NumeroAdh :");
+        String nume = scan.nextLine();
+
+        System.out.println("Veuillez saisir votre nom:");
+        String  nomadhEtu = scan.nextLine();
+        System.out.println("Veuillez saisir votre prenom:");
+        String  prenom = scan.nextLine();
+        System.out.println("Veuillez saisir votre email:");
+        String  email = scan.nextLine();
+        Connection cn =connexion.connectdb();
+        st=cn.createStatement();
+        String rq = "SELECT * FROM adh WHERE NumeroAdh= '"+nume+"'";
         try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Veuillez saisir le nom de l'etudiant :");
-            String nom = scanner.nextLine();
-
-            System.out.println("Veuillez saisir le prenome l'etudiant:");
-            String  prenom = scanner.nextLine();
-
-
-            Scanner scanner = new Scanner(System.in);
-            Connection cnx = connexion.connectdb();
-            String SQL = "INSERT INTO adh(nom,prenom,email) VALUES(?, ?,?,?,?,?,?,?,?)";
-            PreparedStatement pstmt = (PreparedStatement) cnx.prepareStatement(SQL);
-            pstmt.setString(1,etudiant.nom);
-            pstmt.setString(2, String.valueOf(etudiant.prenom));
-            pstmt.setString(3, String.valueOf(etudiant.penalite));
-            /*pstmt.setString(4,etudiant.NumeroAdh);
-            pstmt.setString(5,etudiant.nom);
-            pstmt.setString(6,etudiant.prenom);
-            pstmt.setString(7,etudiant.NombreEmprunte);
-            pstmt.setString(8,etudiant.DureeMax);
-            pstmt.setString(9,etudiant.emprunt);*/
-            r = pstmt.executeUpdate();
-            if(r==1)
-                res=true;
-
-
-        } catch (SQLException ex) {
-            System.out.println("prob d'ajout a la bdd");
-            System.out.println(ex.getMessage());
+            pst = cn.prepareStatement(rq);
+            rst = pst.executeQuery(rq);
+            if (rst.next()) {
+                System.out.println("etudiant deja inscrit");
+            }else {
+                String etd ="etudiant";
+                String sql = "INSERT INTO `adh` (`NumeroAdh`, `nom`, `prenom`, `email`,`status`,`penalite`) VALUES ('"+nume+"', '"+nomadhEtu+"', '"+prenom+"', '"+email+"','"+etd+"','0')";
+                pst = cn.prepareStatement(sql);
+                pst.execute();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }
 
 
-    public void ajoutExamplaire(Etudiant etudiant) {
 
-    }
 
 
 
@@ -123,14 +128,6 @@ public class Enseignant extends Adh {
         this.idEnseignant = idEnseignant;
     }
 
-    public Enseignant(long numeroAdh, String nom, String prenom, String email, long dureeMax, long emprunt, long nombreEmprunte, String departement, String email1, long dureeMax1, long emprunt1, long idEnseignant) {
-        super(numeroAdh, nom, prenom, email, dureeMax, emprunt, nombreEmprunte);
-        this.departement = departement;
-        this.email = email1;
-        DureeMax = dureeMax1;
-        this.emprunt = emprunt1;
-        this.idEnseignant = idEnseignant;
-    }
 
     @Override
     public String toString() {
