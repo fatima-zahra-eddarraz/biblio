@@ -57,12 +57,12 @@ public class biblio {
 
                                     switch (selection4) {
                                         case 1:
-                                            System.out.println("liv");
+
                                             Livre l=new Livre(true);
                                             l.ajouterLivre();
                                             break;
                                         case 2:
-                                            System.out.println("doc");
+
                                             Document d=new Document(true);
                                             d.ajouterDoc();
                                             break;
