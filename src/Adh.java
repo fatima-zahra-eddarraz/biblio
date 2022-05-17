@@ -10,7 +10,8 @@ public class Adh {
     private long emprunt;
     private long NombreEmprunte;
     private String penalite;
-    int count=0; int nbrExemplaire;
+    int count=0;
+    int nbrExemplaire;
     int nbrAdhEmprunt=0;
     int nb2=0;
     int nbrExemplaireEmprunt=0;
