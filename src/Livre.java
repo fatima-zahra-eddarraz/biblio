@@ -80,7 +80,7 @@ public class Livre extends Exemplaire{
             pst = cn.prepareStatement(rq);
             rst = pst.executeQuery(rq);
             if (rst.next()) {
-                int nb2=rst.getInt("nbrExemplaire")+nbrExemplaire2;
+                int nb2=rst.getInt("nbrExemplaire") + nbrExemplaire2;
                 try {
                     Connection condb2 = connexion.connectdb();
 
@@ -92,7 +92,7 @@ public class Livre extends Exemplaire{
                     e.printStackTrace();
                 }
             }else {
-                String sql = "INSERT INTO `livre` (`nomEditeur`, `prenomEditeur`, `titre`, `exemplaire`,`reserver`,`nbrExemplaire`,`nbrExemplaireEmprunter`) VALUES ('"+nomEditeur+"', '"+prenomEditeur+"', '"+titre+"', 1,0,'"+nbrExemplaire+"',0)";
+                String sql = "INSERT INTO `livre` (`nomEditeur`, `prenomEditeur`, `titre`, `exemplaire`,`reserver`,`nbrExemplaire`,`nbrExemplaireEmprunter`) VALUES ('"+nomEditeur+"', '"+prenomEditeur+"', '"+titre+"', 1,0,'"+nbrExemplaire2+"',0)";
                 pst = cn.prepareStatement(sql);
                 pst.execute();
                 System.out.println("livre enregistrer");

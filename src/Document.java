@@ -71,7 +71,7 @@ public class Document extends Exemplaire{
                     e.printStackTrace();
                 }
             }else {
-                String sql = "INSERT INTO document (`nomDoc`,`exemplaire`,`reserver`,`nbrExemplaire`,`nbrExemplaireEmprunter`) VALUES ('"+nomDoc+"', 1,0,'"+nbrExemplaire+"',0)";
+                String sql = "INSERT INTO document (`nomDoc`,`exemplaire`,`reserver`,`nbrExemplaire`,`nbrExemplaireEmprunter`) VALUES ('"+nomDoc+"', 1,0,'"+nbrExemplaire2+"',0)";
                 pst = cn.prepareStatement(sql);
                 pst.execute();
                 System.out.println("document enregistrer");
