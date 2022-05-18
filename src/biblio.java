@@ -160,9 +160,10 @@ public class biblio {
                         System.out.println("etudiant deja inscrit");
                     }else {
                         String etd ="etudiant";
-                        String sql = "INSERT INTO `adh` (`NumeroAdh`, `nom`, `prenom`, `email`,`status`) VALUES ('"+nume+"', '"+nomadhEtu+"', '"+prenom+"', '"+email+"','"+etd+"')";
+                        String sql = "INSERT INTO `adh` (`NumeroAdh`, `nom`, `prenom`, `email`,`NombreEmprunte`,`status`,`penalite`) VALUES ('"+nume+"', '"+nomadhEtu+"', '"+prenom+"', '"+email+"','0','"+etd+"','0')";
                         pst = cn.prepareStatement(sql);
                         pst.execute();
+                        System.out.println("inscription avec succes");
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();

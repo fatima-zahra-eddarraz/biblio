@@ -51,8 +51,7 @@ public class Document extends Exemplaire{
         System.out.println("Veuillez saisir nom DOCUMANT :");
         nomDoc = scan.nextLine();
         System.out.println("Veuillez saisir nombre de copie :");
-        nbrExemplaire = scan.nextLine();
-
+        int nbrExemplaire2 = scan.nextInt();
 
         Connection cn =connexion.connectdb();
         st=cn.createStatement();
@@ -61,7 +60,16 @@ public class Document extends Exemplaire{
             pst = cn.prepareStatement(rq);
             rst = pst.executeQuery(rq);
             if (rst.next()) {
-                System.out.println("doc existe");
+                int nb2=rst.getInt("nbrExemplaire")+nbrExemplaire2;
+                try {
+                    Connection condb2 = connexion.connectdb();
+                    String sqlAdh = "UPDATE `document` SET `nbrExemplaire` = '"+nb2+"' WHERE nomDoc = '"+rst.getString("nomDoc")+"'";
+                    PreparedStatement pst33 = condb2.prepareStatement(sqlAdh);
+                    pst33.execute();
+                    System.out.println("nombre documet augumenter");
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }else {
                 String sql = "INSERT INTO document (`nomDoc`,`exemplaire`,`reserver`,`nbrExemplaire`,`nbrExemplaireEmprunter`) VALUES ('"+nomDoc+"', 1,0,'"+nbrExemplaire+"',0)";
                 pst = cn.prepareStatement(sql);

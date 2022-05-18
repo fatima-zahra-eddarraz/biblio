@@ -9,7 +9,7 @@ public class Livre extends Exemplaire{
     private String titre;
     private boolean reserver;
     private String nbrExemplaire;
-
+    private String nbrExemplaireEmprunter;
     public String getNbrExemplaire() {
         return nbrExemplaire;
     }
@@ -72,7 +72,7 @@ public class Livre extends Exemplaire{
         System.out.println("Veuillez saisir titre du livre:");
         titre = scan.nextLine();
         System.out.println("Veuillez saisir nombre de copie :");
-        nbrExemplaire = scan.nextLine();
+        int nbrExemplaire2 = scan.nextInt();
         Connection cn =connexion.connectdb();
         st=cn.createStatement();
         String rq = "SELECT * FROM livre WHERE nomEditeur= '"+nomEditeur+"' AND prenomEditeur='"+prenomEditeur+"'AND titre='"+titre+"'";
@@ -80,7 +80,17 @@ public class Livre extends Exemplaire{
             pst = cn.prepareStatement(rq);
             rst = pst.executeQuery(rq);
             if (rst.next()) {
-                System.out.println("livre existe");
+                int nb2=rst.getInt("nbrExemplaire")+nbrExemplaire2;
+                try {
+                    Connection condb2 = connexion.connectdb();
+
+                    String sqlAdh = "UPDATE `livre` SET `nbrExemplaire` = '"+nb2+"' WHERE idLivre = '"+rst.getInt("idLivre")+"'";
+                    PreparedStatement pst33 = condb2.prepareStatement(sqlAdh);
+                    pst33.execute();
+                    System.out.println("nombre exemplaire augumenter");
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }else {
                 String sql = "INSERT INTO `livre` (`nomEditeur`, `prenomEditeur`, `titre`, `exemplaire`,`reserver`,`nbrExemplaire`,`nbrExemplaireEmprunter`) VALUES ('"+nomEditeur+"', '"+prenomEditeur+"', '"+titre+"', 1,0,'"+nbrExemplaire+"',0)";
                 pst = cn.prepareStatement(sql);

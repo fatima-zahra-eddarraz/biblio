@@ -280,7 +280,7 @@ public class Adh {
                             ResultSet rst34 = pst34.executeQuery(sqlAdh11);
                             if (rst34.next()) {
                                 Date dateFin = rst34.getDate("DateFinEmprunt");
-                                if(nbrExemplaire > nbrExemplaireEmprunt){
+
                                     String rqt = "SELECT * FROM adh WHERE NumeroAdh= '"+numero+"' AND nom='"+nom+"'";
                                     try {
                                         Connection condb = connexion.connectdb();
@@ -289,7 +289,6 @@ public class Adh {
                                         if (rst1.next()) {
                                             nbrAdhEmprunt=rst1.getInt("NombreEmprunte");
                                             int pen = rst1.getInt("penalite");
-                                            if (nbrAdhEmprunt<3){
                                                 try {
                                                     Connection condb12 = connexion.connectdb();
                                                     String sqlEmprunt = "UPDATE `emprunt` SET `rendu` = '1' WHERE adh ='"+numero+"'AND livre='"+id+"'";
@@ -324,7 +323,7 @@ public class Adh {
                                                             String sqlLivre = "UPDATE `adh` SET `NombreEmprunte` = '" + nb + "' WHERE NumeroAdh = '" + numero + "'";
                                                             PreparedStatement pst44 = condb3.prepareStatement(sqlLivre);
                                                             pst44.execute();
-                                                            System.out.println("UPDATE livre");
+                                                            System.out.println("update nbr livre restant");
                                                         }catch (Exception e){
                                                             e.printStackTrace();
                                                         }
@@ -343,7 +342,7 @@ public class Adh {
                                                             String mm = "UPDATE `adh` SET `penalite` = '" + nb2 +"' WHERE NumeroAdh = '" + numero + "'";
                                                             PreparedStatement pst447 = condb56.prepareStatement(mm);
                                                             pst447.execute();
-                                                            System.out.println("rendre avec penalite  livre");
+                                                            System.out.println("vous avez été pénalisé");
                                                         }catch (Exception e){
                                                             e.printStackTrace();
                                                         }
@@ -353,10 +352,7 @@ public class Adh {
                                                     System.out.println("doc updat err2"+E.getMessage());
                                                 }
 
-                                            }
-                                            else {
-                                                System.out.println("vous avez deja emprunter 3");
-                                            }
+
                                         }
                                     }catch (SQLException e) {
                                         System.out.println("hna erreur2"+e.getMessage());
@@ -364,10 +360,7 @@ public class Adh {
                                     }catch (Exception E){
                                         System.out.println("hna erreur 3"+E.getMessage());
                                     }
-                                }else {
 
-                                    System.out.println("rupture de stock");
-                                }
 
                             }
                         }catch (SQLException e){
@@ -408,7 +401,7 @@ public class Adh {
                             ResultSet rst34 = pst34.executeQuery(sqlAdh11);
                             if (rst34.next()) {
                                Date dateFin = rst34.getDate("DateFinEmprunt");
-                                if(nbrExemplaire > nbrExemplaireEmprunt){
+
                                     String rqt = "SELECT * FROM adh WHERE NumeroAdh= '"+numero+"' AND nom='"+nom+"'";
                                     try {
                                         Connection condb = connexion.connectdb();
@@ -417,7 +410,7 @@ public class Adh {
                                         if (rst1.next()) {
                                             nbrAdhEmprunt=rst1.getInt("NombreEmprunte");
                                             int pen = rst1.getInt("penalite");
-                                            if (nbrAdhEmprunt<3){
+
                                                 try {
                                                     Connection condb12 = connexion.connectdb();
                                                     String sqlEmprunt = "UPDATE `emprunt` SET `rendu` = '1' WHERE adh ='"+numero+"'AND document='"+id+"'";
@@ -451,6 +444,7 @@ public class Adh {
                                                             String sqlLivre = "UPDATE `adh` SET `NombreEmprunte` = '" + nb + "' WHERE NumeroAdh = '" + numero + "'";
                                                             PreparedStatement pst44 = condb3.prepareStatement(sqlLivre);
                                                             pst44.execute();
+                                                            System.out.println("update nbr doc restant");
                                                         }catch (Exception e){
                                                             e.printStackTrace();
                                                         }
@@ -470,7 +464,7 @@ public class Adh {
                                                             String mm = "UPDATE `adh` SET `penalite` = '" + nb2 +"' WHERE NumeroAdh = '" + numero + "'";
                                                             PreparedStatement pst447 = condb56.prepareStatement(mm);
                                                             pst447.execute();
-                                                            System.out.println("rendre avec penalite doc");
+                                                            System.out.println("vous avez été pénalisé");
                                                         }catch (Exception e){
                                                             e.printStackTrace();
                                                         }
@@ -480,10 +474,7 @@ public class Adh {
                                                     System.out.println("doc updat err2"+E.getMessage());
                                                 }
 
-                                            }
-                                            else {
-                                                System.out.println("vous avez deja emprunter 3");
-                                            }
+
                                         }
                                     }catch (SQLException e) {
                                         System.out.println("hna erreur2"+e.getMessage());
@@ -491,10 +482,7 @@ public class Adh {
                                     }catch (Exception E){
                                         System.out.println("hna erreur 3"+E.getMessage());
                                     }
-                                }else {
 
-                                    System.out.println("rupture de stock");
-                                }
 
                             }
                         }catch (SQLException e){

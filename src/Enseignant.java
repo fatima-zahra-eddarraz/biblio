@@ -72,7 +72,7 @@ public class Enseignant extends Adh {
                 System.out.println("etudiant deja inscrit");
             }else {
                 String etd ="etudiant";
-                String sql = "INSERT INTO `adh` (`NumeroAdh`, `nom`, `prenom`, `email`,`status`,`penalite`) VALUES ('"+nume+"', '"+nomadhEtu+"', '"+prenom+"', '"+email+"','"+etd+"','0')";
+                String sql = "INSERT INTO `adh` (`NumeroAdh`, `nom`, `prenom`, `email`,`NombreEmprunte`,`status`,`penalite`) VALUES ('"+nume+"', '"+nomadhEtu+"', '"+prenom+"', '"+email+"','0','"+etd+"','0')";
                 pst = cn.prepareStatement(sql);
                 pst.execute();
             }
