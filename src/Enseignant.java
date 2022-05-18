@@ -41,7 +41,7 @@ public class Enseignant extends Adh {
                 String sql = "DELETE FROM adh WHERE NumeroAdh= '"+nume+"' AND nom='"+nomadhEtu+"'";
                 pst = cn.prepareStatement(sql);
                 pst.execute();
-
+                System.out.println("etudiant supprimer");
             }else {
                 System.out.println("etudiant n'est pas inscrit");
             }
@@ -75,6 +75,7 @@ public class Enseignant extends Adh {
                 String sql = "INSERT INTO `adh` (`NumeroAdh`, `nom`, `prenom`, `email`,`NombreEmprunte`,`status`,`penalite`) VALUES ('"+nume+"', '"+nomadhEtu+"', '"+prenom+"', '"+email+"','0','"+etd+"','0')";
                 pst = cn.prepareStatement(sql);
                 pst.execute();
+                System.out.println("inscription avec succes");
             }
         } catch (SQLException e) {
             e.printStackTrace();
