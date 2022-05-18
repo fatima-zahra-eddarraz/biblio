@@ -77,12 +77,10 @@ public class biblio {
 
                                     switch (selection5) {
                                         case 1:
-                                            System.out.println("liv");
                                             Livre l=new Livre(true);
                                             l.supLivre();
                                             break;
                                         case 2:
-                                            System.out.println("doc");
                                             Document d=new Document(true);
                                             d.supDoc();
                                             break;
