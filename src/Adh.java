@@ -3,7 +3,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Adh {
-
     private long NumeroAdh;
     private String nom;
     private String prenom;
@@ -25,7 +24,6 @@ public class Adh {
     static Statement st1;
     static ResultSet rst1;
     Scanner scan = new Scanner(System.in);
-
     Scanner scanner = new Scanner(System.in);
     public void emprunter(String numero,String nom) throws SQLException {
         System.out.print("est ce vous voulez emprunter:\n");
@@ -245,7 +243,6 @@ public class Adh {
 
 
     }
-
     public  void rendre(String numero,String nom) throws SQLException {
         System.out.print("vous voulez rendre  un:\n");
         System.out.println("1: - livre");
